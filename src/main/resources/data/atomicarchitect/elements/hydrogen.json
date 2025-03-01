@@ -1,0 +1,22 @@
+{
+  "name": "Hydrogen",
+  "symbol": "H",
+  "atomicNumber": 1,
+  "isotope": [
+    {
+      "massNumber": 1,
+      "radioactive": false,
+      "abundance": 0.999855
+    },
+    {
+      "massNumber": 2,
+      "radioactive": false,
+      "abundance": 0.000145
+    },
+    {
+      "massNumber": 3,
+      "radioactive": true,
+      "abundance": 0
+    }
+  ]
+}

@@ -1,21 +1,18 @@
 package org.tingyu.atomicarchitect;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.server.packs.resources.ReloadableResourceManager;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-
-import java.util.stream.Collectors;
+import org.tingyu.atomicarchitect.common.handler.AtomElementBuilder;
+import org.tingyu.atomicarchitect.common.world.item.ModItems;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(AtomicArchitect.MOD_ID)
@@ -26,7 +23,9 @@ public class AtomicArchitect {
 
     public AtomicArchitect() {
         // Register the setup method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        ModItems.register(eventBus);
+        eventBus.addListener(this::setup);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -36,5 +35,15 @@ public class AtomicArchitect {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+
+        event.enqueueWork(() -> {
+            ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
+            if (resourceManager instanceof ReloadableResourceManager) {
+                ((ReloadableResourceManager) resourceManager).registerReloadListener(new AtomElementBuilder());
+                LOGGER.info("Successfully registered ElementBuildHandler!");
+            } else {
+                LOGGER.warn("Unable to register ElementBuildHandler, ResourceManager is not reloadable!");
+            }
+        });
     }
 }
