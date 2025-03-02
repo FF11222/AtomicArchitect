@@ -1,27 +1,128 @@
 package org.tingyu.atomicarchitect.common.world.item;
 
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.registries.ObjectHolder;
 import org.tingyu.atomicarchitect.AtomicArchitect;
-import org.tingyu.atomicarchitect.common.handler.AtomElementBuilder;
 
+@ObjectHolder(AtomicArchitect.MOD_ID)
 public class ModItems {
-    //a register that registry all the items in your mod.
-    public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, AtomicArchitect.MOD_ID);
+    public static final Item HYDROGEN = null;
+    public static final Item HELIUM = null;
+    public static final Item LITHIUM = null;
+    public static final Item BERYLLIUM = null;
+    public static final Item BORON = null;
+    public static final Item CARBON = null;
+    public static final Item NITROGEN = null;
+    public static final Item OXYGEN = null;
+    public static final Item FLUORINE = null;
+    public static final Item NEON = null;
+    public static final Item SODIUM = null;
+    public static final Item MAGNESIUM = null;
+    public static final Item ALUMINUM = null;
+    public static final Item SILICON = null;
+    public static final Item PHOSPHORUS = null;
+    public static final Item SULFUR = null;
+    public static final Item CHLORINE = null;
+    public static final Item ARGON = null;
+    public static final Item POTASSIUM = null;
+    public static final Item CALCIUM = null;
+    public static final Item SCANDIUM = null;
+    public static final Item TITANIUM = null;
+    public static final Item VANADIUM = null;
+    public static final Item CHROMIUM = null;
+    public static final Item MANGANESE = null;
+    public static final Item IRON = null;
+    public static final Item COBALT = null;
+    public static final Item NICKEL = null;
+    public static final Item COPPER = null;
+    public static final Item ZINC = null;
+    public static final Item GALLIUM = null;
+    public static final Item GERMANIUM = null;
+    public static final Item ARSENIC = null;
+    public static final Item SELENIUM = null;
+    public static final Item BROMINE = null;
+    public static final Item KRYPTON = null;
+    public static final Item RUBIDIUM = null;
+    public static final Item STRONTIUM = null;
+    public static final Item YTTRIUM = null;
+    public static final Item ZIRCONIUM = null;
+    public static final Item NIOBIUM = null;
+    public static final Item MOLYBDENUM = null;
+    public static final Item TECHNETIUM = null;
+    public static final Item RUTHENIUM = null;
+    public static final Item RHODIUM = null;
+    public static final Item PALLADIUM = null;
+    public static final Item SILVER = null;
+    public static final Item CADMIUM = null;
+    public static final Item INDIUM = null;
+    public static final Item TIN = null;
+    public static final Item ANTIMONY = null;
+    public static final Item TELLURIUM = null;
+    public static final Item IODINE = null;
+    public static final Item XENON = null;
+    public static final Item CESIUM = null;
+    public static final Item BARIUM = null;
+    public static final Item LANTHANUM = null;
+    public static final Item CERIUM = null;
+    public static final Item PRASEODYMIUM = null;
+    public static final Item NEODYMIUM = null;
+    public static final Item PROMETHIUM = null;
+    public static final Item SAMARIUM = null;
+    public static final Item EUROPIUM = null;
+    public static final Item GADOLINIUM = null;
+    public static final Item TERBIUM = null;
+    public static final Item DYSPROSIUM = null;
+    public static final Item HOLMIUM = null;
+    public static final Item ERBIUM = null;
+    public static final Item THULIUM = null;
+    public static final Item YTTERBIUM = null;
+    public static final Item LUTETIUM = null;
+    public static final Item HAFNIUM = null;
+    public static final Item TANTALUM = null;
+    public static final Item TUNGSTEN = null;
+    public static final Item RHENIUM = null;
+    public static final Item OSMIUM = null;
+    public static final Item IRIDIUM = null;
+    public static final Item PLATINUM = null;
+    public static final Item GOLD = null;
+    public static final Item MERCURY = null;
+    public static final Item THALLIUM = null;
+    public static final Item LEAD = null;
+    public static final Item BISMUTH = null;
+    public static final Item POLONIUM = null;
+    public static final Item ASTATINE = null;
+    public static final Item RADON = null;
+    public static final Item FRANCIUM = null;
+    public static final Item RADIUM = null;
+    public static final Item ACTINIUM = null;
+    public static final Item THORIUM = null;
+    public static final Item PROTACTINIUM = null;
+    public static final Item URANIUM = null;
+    public static final Item NEPTUNIUM = null;
+    public static final Item PLUTONIUM = null;
+    public static final Item AMERICIUM = null;
+    public static final Item CURIUM = null;
+    public static final Item BERKELIUM = null;
+    public static final Item CALIFORNIUM = null;
+    public static final Item EINSTEINIUM = null;
+    public static final Item FERMIUM = null;
+    public static final Item MENDELEVIUM = null;
+    public static final Item NOBELIUM = null;
+    public static final Item LAWRENCIUM = null;
+    public static final Item RUTHERFORDIUM = null;
+    public static final Item DUBNIUM = null;
+    public static final Item SEABORGIUM = null;
+    public static final Item BOHRIUM = null;
+    public static final Item HASSIUM = null;
+    public static final Item MEITNERIUM = null;
+    public static final Item DARMSTADTIUM = null;
+    public static final Item ROENTGENIUM = null;
+    public static final Item COPERNICIUM = null;
+    public static final Item NIHONIUM = null;
+    public static final Item FLEROVIUM = null;
+    public static final Item MOSCOVIUM = null;
+    public static final Item LIVERMORIUM = null;
+    public static final Item TENNESSINE = null;
+    public static final Item OGANESSON = null;
 
-
-    //items in your mod
-    public static final RegistryObject<Item> HYDROGEN = ITEMS.register("hydrogen",
-            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
-
-    //the method that register items
-    public static void register(IEventBus eventBus) {
-        AtomElementBuilder.build(ITEMS);
-        ITEMS.register(eventBus);
-    }
 }
