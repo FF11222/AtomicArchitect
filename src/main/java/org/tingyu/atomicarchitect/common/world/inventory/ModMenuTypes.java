@@ -7,4 +7,5 @@ import org.tingyu.atomicarchitect.AtomicArchitect;
 @ObjectHolder(AtomicArchitect.MOD_ID)
 public class ModMenuTypes {
     public static final MenuType<MatterDecomposerMenu> MATTER_DECOMPOSER = null;
+    public static final MenuType<AlchemyTableMenu> ALCHEMY_TABLE = null;
 }

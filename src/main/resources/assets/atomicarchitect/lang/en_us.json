@@ -118,5 +118,7 @@
   "item.atomic_architect.tennessine": "Tennessine",
   "item.atomic_architect.oganesson": "Oganesson",
 
+  "block.atomic_architect.alchemy_table": "Alchemy table",
+
   "itemGroup.AtomicArchitect": "Atomic Architect"
 }

@@ -117,6 +117,7 @@
   "item.atomic_architect.livermorium": "鉝",
   "item.atomic_architect.tennessine": "鿬",
   "item.atomic_architect.oganesson": "鿫",
+  "block.atomic_architect.alchemy_table": "煉金台",
 
   "itemGroup.AtomicArchitect": "Atomic Architect"
 }
