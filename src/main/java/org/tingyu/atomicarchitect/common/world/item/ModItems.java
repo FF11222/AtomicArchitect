@@ -5,6 +5,7 @@ import net.minecraftforge.registries.ObjectHolder;
 import org.tingyu.atomicarchitect.AtomicArchitect;
 
 @ObjectHolder(AtomicArchitect.MOD_ID)
+@SuppressWarnings("unused")
 public class ModItems {
     public static final Item HYDROGEN = null;
     public static final Item HELIUM = null;
@@ -124,5 +125,4 @@ public class ModItems {
     public static final Item LIVERMORIUM = null;
     public static final Item TENNESSINE = null;
     public static final Item OGANESSON = null;
-
 }

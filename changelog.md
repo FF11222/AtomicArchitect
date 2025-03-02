@@ -13,3 +13,9 @@
 2. 完成118個元素的建立(沒有texture跟model，有中英的lang)
 ### 待解決
 1. 有些中文顯示不出來(可能是編碼問題)
+
+## [1.18.2-0.0.3.0]-2025/03/02
+1. 加入 MatterDecomposerMenu, 註冊 ModMenuTypes 於 RegistryHandler
+### 待解決
+1. 有些中文顯示不出來(可能是編碼問題)
+2. 完成 MatterDecomposerMenu 與 Screen
