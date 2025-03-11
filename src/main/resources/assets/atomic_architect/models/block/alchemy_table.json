@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube",
+  "texture": {
+    "all": "atomic_architect:block/alchemy_table"
+  }
+}

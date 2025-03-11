@@ -23,3 +23,12 @@
 1. 有些中文顯示不出來(可能是編碼問題)
 2. 完成 MatterDecomposerMenu 與 Screen
 3. 完成 AlchemyTable BlockEntity, Menu, Screen
+
+## [1.18.2-0.0.5.0]-2025/03/11
+1. 用 AlchemyTable 作為 AlchemyTableMenu 的 slot，並建立 AlchemyContainer。
+2. 讓 AlchemyTable 的 gui 正常顯示
+### 待解決
+1. 有些中文顯示不出來(可能是編碼問題)
+2. 完成 MatterDecomposerMenu 與 Screen
+3. 完成 AlchemyTable BlockEntity, Menu, Screen
+4. 實現放置物品到 AlchemyTable 上

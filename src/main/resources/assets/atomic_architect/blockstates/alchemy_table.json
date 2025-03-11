@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": {"model": "atomic_architect:block/alchemy_table"}
+  }
+}

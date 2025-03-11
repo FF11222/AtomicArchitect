@@ -4,7 +4,6 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -12,16 +11,17 @@ import org.tingyu.atomicarchitect.AtomicArchitect;
 import org.tingyu.atomicarchitect.common.world.inventory.AlchemyTableMenu;
 import org.tingyu.atomicarchitect.common.world.inventory.MatterDecomposerMenu;
 import org.tingyu.atomicarchitect.common.world.item.ElementItem;
+import org.tingyu.atomicarchitect.common.world.item.ModCreativeModeTab;
 import org.tingyu.atomicarchitect.common.world.level.block.AlchemyTableBlock;
 import org.tingyu.atomicarchitect.common.world.level.block.ModBlocks;
-import org.tingyu.atomicarchitect.common.world.level.block.entity.AlchemyTableBlockEntity;
 
 @Mod.EventBusSubscriber(modid = AtomicArchitect.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RegistryHandler {
     @SubscribeEvent
     public static void onItemRegistry(final RegistryEvent.Register<Item> event) {
         event.getRegistry().register(
-                new BlockItem(ModBlocks.ALCHEMY_TABLE, new Item.Properties()).setRegistryName("alchemy_table"));
+                new BlockItem(ModBlocks.ALCHEMY_TABLE
+                        , new Item.Properties().tab(ModCreativeModeTab.TAB_ATOMIC_ARCHITECT)).setRegistryName("alchemy_table"));
 
         event.getRegistry().register(new ElementItem(new ElementItem.Properties().atomicNumber(1).symbol("H").name("hydrogen")).setRegistryName("hydrogen"));
         event.getRegistry().register(new ElementItem(new ElementItem.Properties().atomicNumber(2).symbol("He").name("helium")).setRegistryName("helium"));
@@ -152,12 +152,5 @@ public class RegistryHandler {
     public static void onMenuTypeRegistry(final RegistryEvent.Register<MenuType<?>> event) {
         event.getRegistry().register(new MenuType<>(MatterDecomposerMenu::new).setRegistryName("matter_decomposer"));
         event.getRegistry().register(new MenuType<>(AlchemyTableMenu::new).setRegistryName("alchemy_table"));
-    }
-
-    @SubscribeEvent
-    public static void onBlockEntityRegistry(final RegistryEvent.Register<BlockEntityType<?>> event) {
-        event.getRegistry().register(BlockEntityType.Builder.of(
-                AlchemyTableBlockEntity::new, ModBlocks.ALCHEMY_TABLE).build(null)
-                .setRegistryName("alchemy_table_block_entity"));
     }
 }
