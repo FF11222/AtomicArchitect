@@ -1,16 +1,14 @@
 package org.tingyu.atomicarchitect.common.world.inventory;
 
+import net.minecraft.core.NonNullList;
 import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import org.tingyu.atomicarchitect.common.util.math.Coordinate2i;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class AlchemyContainer implements Container {
     private final AlchemyTableMenu menu;
-    public final Map<Coordinate2i, ItemStack> elements = new HashMap<>();
+    public final NonNullList<ItemStack> elements = NonNullList.create();
 
 
     public AlchemyContainer(AlchemyTableMenu menu) {
@@ -19,33 +17,44 @@ public class AlchemyContainer implements Container {
 
     @Override
     public int getContainerSize() {
-        return 0;
+        return this.elements.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.elements.isEmpty();
     }
 
     @Override
-    public ItemStack getItem(int p_18941_) {
-        //TODO:
-        return ItemStack.EMPTY;
+    public ItemStack getItem(int slot) {
+        if (slot >= this.elements.size()) return ItemStack.EMPTY;
+        return this.elements.get(slot);
     }
 
     @Override
-    public ItemStack removeItem(int p_18942_, int p_18943_) {
-        return null;
+    public ItemStack removeItem(int amount, int decrement) {
+        ItemStack itemstack = ContainerHelper.removeItem(this.elements, amount, decrement);
+        if (!itemstack.isEmpty()) {
+            this.setChanged();
+        }
+
+        return itemstack;
     }
 
     @Override
     public ItemStack removeItemNoUpdate(int p_18951_) {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override
-    public void setItem(int p_18944_, ItemStack p_18945_) {
+    public void setItem(int slot, ItemStack itemStack) {
+        if (this.elements.size() <= slot) this.elements.add(itemStack);
+        else this.elements.set(slot, itemStack);
+        if (itemStack.getCount() > this.getMaxStackSize()) {
+            itemStack.setCount(this.getMaxStackSize());
+        }
 
+        this.setChanged();
     }
 
     @Override
@@ -54,12 +63,12 @@ public class AlchemyContainer implements Container {
     }
 
     @Override
-    public boolean stillValid(Player p_18946_) {
+    public boolean stillValid(Player player) {
         return true;
     }
 
     @Override
     public void clearContent() {
-
+        this.elements.clear();
     }
 }

@@ -6,9 +6,6 @@ import net.minecraft.world.item.ItemStack;
 import org.tingyu.atomicarchitect.common.util.math.Coordinate2i;
 import org.tingyu.atomicarchitect.common.world.item.ElementItem;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  *  This is the class that implement my custom slots.
  * */
@@ -22,28 +19,19 @@ public class AlchemyTable extends Slot {
      * */
     public final int x;
     public final int y;
-    public final int height;
-    public final int width;
 
     public final AlchemyContainer container;
 
-    public AlchemyTable(int x, int y, int height, int width, AlchemyContainer container, int slot) {
+    public AlchemyTable(int x, int y, AlchemyContainer container, int slot) {
         super(container, slot, x, y);
         this.x = x;
         this.y = y;
-        this.height = height;
-        this.width = width;
         this.container = container;
-    }
-
-
-    public ItemStack getItem(int mouseX, int mouseY) {
-        return this.container.getItem(0);
     }
 
     @Override
     public int getMaxStackSize() {
-        return 1;
+        return 64;
     }
 
     @Override
@@ -51,8 +39,8 @@ public class AlchemyTable extends Slot {
         return item.getItem() instanceof ElementItem;
     }
 
-    public ItemStack safeInsert(ItemStack itemStack, Coordinate2i position) {
-        this.container.elements.put(position, itemStack);
-        return super.safeInsert(itemStack);
+    @Override
+    public void set(ItemStack itemStack) {
+        super.set(itemStack);
     }
 }

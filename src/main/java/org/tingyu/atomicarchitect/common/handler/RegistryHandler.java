@@ -3,6 +3,7 @@ package org.tingyu.atomicarchitect.common.handler;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -12,6 +13,7 @@ import org.tingyu.atomicarchitect.common.world.inventory.AlchemyTableMenu;
 import org.tingyu.atomicarchitect.common.world.inventory.MatterDecomposerMenu;
 import org.tingyu.atomicarchitect.common.world.item.ElementItem;
 import org.tingyu.atomicarchitect.common.world.item.ModCreativeModeTab;
+import org.tingyu.atomicarchitect.common.world.item.crafting.AlchemyRecipe;
 import org.tingyu.atomicarchitect.common.world.level.block.AlchemyTableBlock;
 import org.tingyu.atomicarchitect.common.world.level.block.ModBlocks;
 
@@ -152,5 +154,10 @@ public class RegistryHandler {
     public static void onMenuTypeRegistry(final RegistryEvent.Register<MenuType<?>> event) {
         event.getRegistry().register(new MenuType<>(MatterDecomposerMenu::new).setRegistryName("matter_decomposer"));
         event.getRegistry().register(new MenuType<>(AlchemyTableMenu::new).setRegistryName("alchemy_table"));
+    }
+
+    @SubscribeEvent
+    public static void onRegisterRecipeSerializer(final RegistryEvent.Register<RecipeSerializer<?>> event) {
+        event.getRegistry().register(new AlchemyRecipe.Serializer().setRegistryName("alchemy_recipe"));
     }
 }

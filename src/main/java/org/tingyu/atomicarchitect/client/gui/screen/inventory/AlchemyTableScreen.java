@@ -16,6 +16,8 @@ import org.tingyu.atomicarchitect.common.world.item.ElementItem;
 public class AlchemyTableScreen extends AbstractContainerScreen<AlchemyTableMenu> {
     private final AlchemyTableMenu menu;
     private static final ResourceLocation ALCHEMY_TABLE_LOCATION = new ResourceLocation(AtomicArchitect.MOD_ID, "textures/gui/container/alchemy_table.png");
+    private final int SLOT_HEIGHT = 74;
+    private final int SLOT_WIDTH = 55;
     public AlchemyTableScreen(AlchemyTableMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
         this.menu = menu;
@@ -27,6 +29,10 @@ public class AlchemyTableScreen extends AbstractContainerScreen<AlchemyTableMenu
         this.renderBackground(poseStack);
         super.render(poseStack, mouseX, mouseY, delta);
         this.renderTooltip(poseStack, mouseX, mouseY);
+
+        for (AlchemyTable slot : this.menu.getCraftSlots()) {
+            this.blit(poseStack, slot.x, slot.y, 0, 0, 18, 18);
+        }
     }
 
     @Override
@@ -34,30 +40,23 @@ public class AlchemyTableScreen extends AbstractContainerScreen<AlchemyTableMenu
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, ALCHEMY_TABLE_LOCATION);
-        int i = (this.width - this.imageWidth) / 2;
-        int j = (this.height - this.imageHeight) / 2;
+        int i = this.leftPos;
+        int j = this.topPos;
         this.blit(poseStack, i, j, 0, 0, this.imageWidth, this.imageHeight);
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        super.mouseClicked(mouseX, mouseY, button);
-        ItemStack carried = this.menu.getCarried();
-        if (button == 0 && !carried.isEmpty() && carried.getItem() instanceof ElementItem) {
-            AlchemyTable alchemyTable = this.findAlchemyTable(mouseX, mouseY);
-            //location of mouse related to slot
-            int mouseX1 = (int) (mouseX - this.leftPos);
-            int mouseY1 = (int) (mouseY - this.topPos);
-            if (alchemyTable != null) this.menu.onPlaceAlchemyTable(mouseX1, mouseY1);
-        }
-        return true;
-    }
+    public boolean mouseClicked(double mouseX, double mouseY, int button) { // button(0:left click, 1:right click, 2:middle)
 
-    private AlchemyTable findAlchemyTable(double mouseX, double mouseY) {
-        if (this.isHovering(this.menu.alchemyTable.x, this.menu.alchemyTable.y, this.menu.alchemyTable.height
-                , this.menu.alchemyTable.width, mouseX, mouseY)) {
-            return this.menu.alchemyTable;
+        System.out.println("button "+button);//TODO:delete
+        ItemStack carried = this.menu.getCarried();
+        if (button == 0 && !carried.isEmpty() && carried.getItem() instanceof ElementItem
+                && this.isHovering(this.menu.alchemyTable.x, this.menu.alchemyTable.y
+                , this.SLOT_HEIGHT, this.SLOT_WIDTH, mouseX, mouseY)) {
+            System.out.println("placed");//TODO:delete
+            this.menu.addSlotAt((int) mouseX, (int) mouseY, carried);
         }
-        return null;
+
+        return super.mouseClicked(mouseX, mouseY, button);
     }
 }
